@@ -63,6 +63,9 @@ namespace BLL.Services
                 ISBN = book_dto.ISBN,
                 Categories = new List<Category>()
             };
+            if(book_dto.Categories!=null)
+            foreach (var c in book_dto.Categories)
+                book.Categories.ToList().Add(new Category() { Id = c.Id, Name = c.Name, DateCreated = c.DateCreated });
             Database.Books.Update(book);
             await Database.SaveAsync();
         }
